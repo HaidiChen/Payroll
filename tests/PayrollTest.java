@@ -11,6 +11,7 @@ import transactions.*;
 import global.*;
 import methods.*;
 import classifications.*;
+import affiliations.*;
 
 public class PayrollTest {
 
@@ -40,6 +41,30 @@ public class PayrollTest {
     ase = new AddSalariedEmployee(empId, "Alix", "Arlinton", 200.00);
     ahe = new AddHourlyEmployee(empId, "Berb", "Boston", 20.00);
     ace = new AddCommissionedEmployee(empId, "Clerk", "Croker", 2000.00, 20.00);
+  }
+  
+  @Test
+  public void changeNoAffiliationTransaction() {
+    ace.execute();
+    ChangeUnaffiliatedTransaction cmt = new ChangeUnaffiliatedTransaction(empId);
+    cmt.execute();
+    e = GpayrollDatabase.getEmployee(empId);
+    NoAffiliation ua = (NoAffiliation) e.getAffiliation();
+    assertNotNull(ua);
+  }
+
+  @Test
+  public void changeMemberTransaction() {
+    int memberId = 7734;
+    ahe.execute();
+    ChangeMemberTransaction cmt = 
+      new ChangeMemberTransaction(empId, memberId, 99.42);
+    cmt.execute();
+    e = GpayrollDatabase.getEmployee(empId);
+    UnionAffiliation ua = (UnionAffiliation) e.getAffiliation();
+    assertEquals(Double.valueOf(ua.getDues()), Double.valueOf(99.42));
+    Employee member = GpayrollDatabase.getUnionMember(memberId);
+    assertEquals(e, member);
   }
 
   @Test
@@ -133,9 +158,9 @@ public class PayrollTest {
     
     e = GpayrollDatabase.getEmployee(empId);
 
-    ua = new UnionAffiliation(12.5);
-    e.setAffiliation(ua);
     int memberId = 86;
+    ua = new UnionAffiliation(memberId, 12.5);
+    e.setAffiliation(ua);
     GpayrollDatabase.addUnionMember(memberId, e);
     
     sct = new ServiceChargeTransaction(memberId, 20200119, 12.95);

@@ -3,6 +3,7 @@ package transactions;
 import classifications.CommissionedClassification;
 import intfs.Transaction;
 import global.*;
+import affiliations.UnionAffiliation;
 
 public class ServiceChargeTransaction implements Transaction {
 

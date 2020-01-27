@@ -27,4 +27,8 @@ public class GpayrollDatabase {
     return unionMembers.get(memberId);
   }
 
+  public static void removeUnionMember(int memberId) {
+    unionMembers.remove(memberId);
+  }
+
 }

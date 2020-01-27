@@ -1,15 +1,18 @@
-package global;
+package affiliations;
 
 import intfs.Affiliation;
 import java.util.HashMap;
+import global.ServiceCharge;
 
 public class UnionAffiliation implements Affiliation {
 
-  private double hours;
+  private int memberId;
+  private double dues;
   private HashMap<Long, ServiceCharge> itsCharges = new HashMap<>();
 
-  public UnionAffiliation(double hours) {
-    this.hours = hours;
+  public UnionAffiliation(int memberId, double dues) {
+    this.memberId = memberId;
+    this.dues = dues;
   }
 
   public ServiceCharge getServiceCharge(long date) {
@@ -18,5 +21,13 @@ public class UnionAffiliation implements Affiliation {
 
   public void addServiceCharge(ServiceCharge sc) {
     itsCharges.put(sc.getDate(), sc);
+  }
+
+  public double getDues() {
+    return dues;
+  }
+
+  public int getMemberId() {
+    return memberId;
   }
 }
