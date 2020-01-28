@@ -1,6 +1,7 @@
 package methods;
 
 import intfs.PaymentMethod;
+import global.Paycheck;
 
 public class MailMethod implements PaymentMethod {
 
@@ -19,4 +20,6 @@ public class MailMethod implements PaymentMethod {
   public String getAddress() {
     return address;
   }
+
+  public void pay(Paycheck pc) {}
 }

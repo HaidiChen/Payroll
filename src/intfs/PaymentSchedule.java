@@ -1,3 +1,7 @@
 package intfs;
 
-public interface PaymentSchedule {}
+import global.Date;
+
+public interface PaymentSchedule {
+  public boolean isPayDate(Date payDate);
+}

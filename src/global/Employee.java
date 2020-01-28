@@ -66,4 +66,17 @@ public class Employee {
     this.address = address;
   }
 
+  public boolean isPayDate(Date payDate) {
+    return ps.isPayDate(payDate);
+  }
+
+  public void payday(Paycheck paycheck) {
+    double grossPay = pc.calculatePay(paycheck);
+    double deductions = af.calculateDeductions(paycheck);
+    double netPay = grossPay - deductions;
+    paycheck.setGrossPay(grossPay);
+    paycheck.setNetPay(netPay);
+    pm.pay(paycheck);
+  }
+
 }

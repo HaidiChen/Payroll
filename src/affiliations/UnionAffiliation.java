@@ -3,6 +3,7 @@ package affiliations;
 import intfs.Affiliation;
 import java.util.HashMap;
 import global.ServiceCharge;
+import global.Paycheck;
 
 public class UnionAffiliation implements Affiliation {
 
@@ -29,5 +30,9 @@ public class UnionAffiliation implements Affiliation {
 
   public int getMemberId() {
     return memberId;
+  }
+
+  public double calculateDeductions(Paycheck pc) {
+    return 0;
   }
 }

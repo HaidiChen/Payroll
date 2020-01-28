@@ -1,11 +1,17 @@
 package global;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class GpayrollDatabase {
 
   private static HashMap<Integer, Employee> itsEmployees = new HashMap<>();
   private static HashMap<Integer, Employee> unionMembers = new HashMap<>();
+
+  public static ArrayList<Integer> getAllEmployeeIds() {
+    ArrayList<Integer> empIds = new ArrayList<Integer>(itsEmployees.keySet());
+    return empIds;
+  }
 
   public static void addEmployee(int empId, Employee e) {
     itsEmployees.put(empId, e);

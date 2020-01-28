@@ -1,6 +1,7 @@
 package classifications;
 
 import intfs.PaymentClassification;
+import global.Paycheck;
 
 public class SalariedClassification implements PaymentClassification {
 
@@ -12,5 +13,9 @@ public class SalariedClassification implements PaymentClassification {
 
   public double getSalary() {
     return salary;
+  }
+
+  public double calculatePay(Paycheck pc) {
+    return 0;
   }
 }

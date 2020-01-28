@@ -1,8 +1,6 @@
 import org.junit.Test;
 import org.junit.Before;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
 
 import intfs.*;
@@ -25,16 +23,6 @@ public class ChangeEmployeeInfoTest {
   private CommissionedClassification cc;
   private HourlyClassification hc;
   private SalariedClassification sc;
-
-  private TimeCardTransaction tct;
-  private TimeCard tc;
-
-  private SalesReceiptTransaction srt;
-  private SalesReceipt sr;
-
-  private ServiceChargeTransaction sct;
-  private ServiceCharge svc;
-  private UnionAffiliation ua;
 
   @Before
   public void setUp() {

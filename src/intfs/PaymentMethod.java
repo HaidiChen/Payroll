@@ -1,3 +1,7 @@
 package intfs;
 
-public interface PaymentMethod {}
+import global.Paycheck;
+
+public interface PaymentMethod {
+  public void pay(Paycheck pc);
+}

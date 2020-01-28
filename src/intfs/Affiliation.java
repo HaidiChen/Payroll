@@ -1,3 +1,7 @@
 package intfs;
 
-public interface Affiliation {}
+import global.Paycheck;
+
+public interface Affiliation {
+  public double calculateDeductions(Paycheck pc);
+}

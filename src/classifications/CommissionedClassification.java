@@ -1,6 +1,7 @@
 package classifications;
 
 import global.SalesReceipt;
+import global.Paycheck;
 import java.util.HashMap;
 import intfs.PaymentClassification;
 
@@ -29,6 +30,10 @@ public class CommissionedClassification implements PaymentClassification {
 
   public SalesReceipt getSalesReceipt(long date) {
     return itsReceipts.get(date);
+  }
+
+  public double calculatePay(Paycheck pc) {
+    return 0;
   }
   
 }

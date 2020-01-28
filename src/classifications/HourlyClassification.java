@@ -2,6 +2,7 @@ package classifications;
 
 import intfs.PaymentClassification;
 import global.TimeCard;
+import global.Paycheck;
 import java.util.HashMap;
 
 public class HourlyClassification implements PaymentClassification {
@@ -24,6 +25,10 @@ public class HourlyClassification implements PaymentClassification {
 
   public void addTimeCard(TimeCard tc) {
     itsCards.put(tc.getDate(), tc);
+  }
+
+  public double calculatePay(Paycheck pc) {
+    return 0;
   }
   
 }

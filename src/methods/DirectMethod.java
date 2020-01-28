@@ -1,6 +1,7 @@
 package methods;
 
 import intfs.PaymentMethod;
+import global.Paycheck;
 
 public class DirectMethod implements PaymentMethod {
   
@@ -19,4 +20,6 @@ public class DirectMethod implements PaymentMethod {
   public long getAccount() {
     return account;
   }
+
+  public void pay(Paycheck pc) {}
 }
