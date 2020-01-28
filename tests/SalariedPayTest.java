@@ -33,6 +33,7 @@ public class SalariedPayTest {
     Paycheck pc = pt.getPaycheck(empId);
     assertNotNull(pc);
     assertEquals(pc.getPayDate(), payDate);
+    assertEquals(Double.valueOf(200.00), Double.valueOf(pc.getNetPay()));
   }
 
   @Test
