@@ -6,11 +6,11 @@ import global.*;
 
 public class TimeCardTransaction implements Transaction {
 
-  private long date;
+  private Date date;
   private double hours;
   private int empId;
 
-  public TimeCardTransaction(long date, double hours, int empId) {
+  public TimeCardTransaction(Date date, double hours, int empId) {
     this.date = date;
     this.hours = hours;
     this.empId = empId;

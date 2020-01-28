@@ -1,15 +1,13 @@
 package classifications;
 
 import intfs.PaymentClassification;
-import global.TimeCard;
-import global.Paycheck;
+import global.*;
 import java.util.HashMap;
 
 public class HourlyClassification implements PaymentClassification {
 
-  private HashMap<Long, TimeCard> itsCards = new HashMap<>();
+  private HashMap<Date, TimeCard> itsCards = new HashMap<>();
   private double rate;
-  private TimeCard timeCard;
 
   public HourlyClassification(double rate) {
     this.rate = rate;
@@ -19,7 +17,7 @@ public class HourlyClassification implements PaymentClassification {
     return rate;
   }
 
-  public TimeCard getTimeCard(long date) {
+  public TimeCard getTimeCard(Date date) {
     return itsCards.get(date);
   }
 
@@ -28,7 +26,21 @@ public class HourlyClassification implements PaymentClassification {
   }
 
   public double calculatePay(Paycheck pc) {
-    return 0;
+    double totalRate = 0;
+
+    for (Date date: itsCards.keySet()) {
+      TimeCard tc = itsCards.get(date);
+      double hours = tc.getHours();
+      if (hours > 8) {
+        double extraHours = hours - 8;
+        extraHours *= 1.5;
+        totalRate += (8 + extraHours) * rate;
+      }
+      else {
+        totalRate += hours * rate;
+      }
+    }
+    return totalRate;
   }
   
 }

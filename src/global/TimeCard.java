@@ -3,14 +3,14 @@ package global;
 public class TimeCard {
 
   private double hours;
-  private long date;
+  private Date date;
 
-  public TimeCard(long date, double hours) {
+  public TimeCard(Date date, double hours) {
     this.date = date;
     this.hours = hours;
   }
 
-  public long getDate() {
+  public Date getDate() {
     return date;
   }
 

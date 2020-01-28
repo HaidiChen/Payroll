@@ -4,7 +4,9 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
   Others.class,
-  PaymentTest.class,
+  HourlyPayTest.class,
+  SalariedPayTest.class,
+//  CommissionedPayTest.class,
   ChangeEmployeeInfoTest.class,
   AddDeleteEmployeeTest.class,
 })

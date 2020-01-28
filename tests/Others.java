@@ -80,24 +80,26 @@ public class Others {
   @Test 
   public void addTimeCardToNonHourlyEmployee() {
     ase.execute();
+    Date date = new Date(2020, 1, 19);
 
-    tct = new TimeCardTransaction(20200119, 8.0, empId);
+    tct = new TimeCardTransaction(date, 8.0, empId);
     tct.execute();
 
-    tct = new TimeCardTransaction(20200119, 8.0, 10);
+    tct = new TimeCardTransaction(date, 8.0, 10);
     tct.execute();
   }
 
   @Test
   public void testTimeCardTransaction() {
     ahe.execute();
+    Date date = new Date(2020, 1, 19);
 
-    TimeCardTransaction tct = new TimeCardTransaction(20200119, 8.0, empId);
+    TimeCardTransaction tct = new TimeCardTransaction(date, 8.0, empId);
     tct.execute();
 
     e = GpayrollDatabase.getEmployee(empId);
     hc = (HourlyClassification) e.getClassification();
-    tc = hc.getTimeCard(20200119);
+    tc = hc.getTimeCard(date);
 
     assertNotNull(tc);
     assertEquals(Double.valueOf(8.0), Double.valueOf(tc.getHours()));
