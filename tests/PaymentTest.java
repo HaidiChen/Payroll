@@ -32,8 +32,6 @@ public class PaymentTest {
   @Test
   public void paySalariedEmployee() {
     ase.execute();
-    ChangeUnaffiliatedTransaction ct = new ChangeUnaffiliatedTransaction(empId);
-    ct.execute();
     Date payDate = new Date(2001, 11, 30);
     PaydayTransaction pt = new PaydayTransaction(payDate);
     pt.execute();
