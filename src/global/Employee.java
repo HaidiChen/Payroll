@@ -76,6 +76,7 @@ public class Employee {
     double netPay = grossPay - deductions;
     paycheck.setGrossPay(grossPay);
     paycheck.setNetPay(netPay);
+    paycheck.setMethod(pm);
     pm.pay(paycheck);
   }
 

@@ -22,4 +22,8 @@ public class DirectMethod implements PaymentMethod {
   }
 
   public void pay(Paycheck pc) {}
+
+  public String getMethodName() {
+    return "Direct";
+  }
 }

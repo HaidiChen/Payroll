@@ -43,4 +43,12 @@ public class Date {
 
     return month != newDate.get(Calendar.MONTH);
   }
+
+  public boolean isEndOfWeek() {
+    int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+    if (dayOfWeek == 6) {
+      return true;
+    }
+    return false;
+  }
 }

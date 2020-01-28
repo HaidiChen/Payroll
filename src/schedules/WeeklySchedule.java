@@ -6,6 +6,6 @@ import global.Date;
 public class WeeklySchedule implements PaymentSchedule {
 
   public boolean isPayDate(Date payDate) {
-    return false;
+    return payDate.isEndOfWeek();
   }
 }

@@ -30,6 +30,25 @@ public class PaymentTest {
   }
 
   @Test
+  public void payHourlyEmployeeWithNoTimeCards() {
+    ahe.execute();
+    Date payDate = new Date(2001, 11, 9);
+    PaydayTransaction pt = new PaydayTransaction(payDate);
+    pt.execute();
+    validateHourlyPaycheck(pt, empId, payDate, 0.0);
+  }
+
+  private void validateHourlyPaycheck(
+      PaydayTransaction pt, int empId, Date payDate, double pay) {
+    Paycheck pc = pt.getPaycheck(empId);
+    assertEquals(pc.getPayDate(), payDate);
+    assertEquals(Double.valueOf(pay), Double.valueOf(pc.getGrossPay()));
+    assertEquals("Hold", pc.getField("Disposition"));
+    assertEquals(Double.valueOf(pc.getDeductions()), Double.valueOf(0.0));
+    assertEquals(Double.valueOf(pc.getNetPay()), Double.valueOf(pay));
+  }
+
+  @Test
   public void paySalariedEmployee() {
     ase.execute();
     Date payDate = new Date(2001, 11, 30);
@@ -37,7 +56,7 @@ public class PaymentTest {
     pt.execute();
     Paycheck pc = pt.getPaycheck(empId);
     assertNotNull(pc);
-    assertEquals(pc.getPayDate().toString(), payDate.toString());
+    assertEquals(pc.getPayDate(), payDate);
   }
 
   @Test
