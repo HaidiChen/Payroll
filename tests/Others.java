@@ -46,7 +46,7 @@ public class Others {
   @Test
   public void addServiceCharge() {
     ahe.execute();
-    
+    Date date = new Date(2020, 1, 19);
     e = GpayrollDatabase.getEmployee(empId);
 
     int memberId = 86;
@@ -54,23 +54,24 @@ public class Others {
     e.setAffiliation(ua);
     GpayrollDatabase.addUnionMember(memberId, e);
     
-    sct = new ServiceChargeTransaction(memberId, 20200119, 12.95);
+    sct = new ServiceChargeTransaction(memberId, date, 12.95);
     sct.execute();
 
-    svc = ua.getServiceCharge(20200119);
+    svc = ua.getServiceCharge(date);
     assertEquals(Double.valueOf(12.95), Double.valueOf(svc.getAmount()));
   }
 
   @Test
   public void testSalesReceiptTransaction() {
     ace.execute();
+    Date date = new Date(2020, 1, 19);
 
-    srt = new SalesReceiptTransaction(20200119, 10, empId);
+    srt = new SalesReceiptTransaction(date, 10, empId);
     srt.execute();
 
     e = GpayrollDatabase.getEmployee(empId);
     cc = (CommissionedClassification) e.getClassification();
-    sr = cc.getSalesReceipt(20200119);
+    sr = cc.getSalesReceipt(date);
 
     assertNotNull(sr);
     assertEquals(Double.valueOf(10), Double.valueOf(sr.getAmount()));

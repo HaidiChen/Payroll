@@ -3,14 +3,14 @@ package global;
 public class ServiceCharge {
 
   private double charge;
-  private long date;
+  private Date date;
 
-  public ServiceCharge(long date, double charge) {
+  public ServiceCharge(Date date, double charge) {
     this.date = date;
     this.charge = charge;
   }
 
-  public long getDate() {
+  public Date getDate() {
     return date;
   }
 

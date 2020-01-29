@@ -6,11 +6,11 @@ import global.*;
 
 public class SalesReceiptTransaction implements Transaction {
 
-  private long date;
+  private Date date;
   private double amount;
   private int empId;
 
-  public SalesReceiptTransaction(long date, double amount, int empId) {
+  public SalesReceiptTransaction(Date date, double amount, int empId) {
     this.date = date;
     this.amount = amount;
     this.empId = empId;

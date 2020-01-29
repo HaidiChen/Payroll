@@ -25,6 +25,47 @@ public class HourlyPayTest {
   }
 
   @Test
+  public void paySingleHourlyEmployeeWithTimeCardsSpanningTwoPayPeriods() {
+    ahe.execute();
+    Date payDate = new Date(2001, 11, 9);
+    Date dateInPreviousPayPeriod = new Date(2001, 11, 2);
+
+    TimeCardTransaction tct = new TimeCardTransaction(payDate, 2.0, empId);
+    tct.execute();
+    TimeCardTransaction t2 = 
+      new TimeCardTransaction(dateInPreviousPayPeriod, 5.0, empId);
+    t2.execute();
+    PaydayTransaction pt = new PaydayTransaction(payDate);
+    pt.execute();
+    validateHourlyPaycheck(pt, empId, payDate, 2 * 15.25);
+  }
+
+  @Test
+  public void paySingleHourlyEmployeeTwoTimeCards() {
+    ahe.execute();
+    Date payDate = new Date(2001, 11, 9);
+    TimeCardTransaction tct = new TimeCardTransaction(payDate, 2.0, empId);
+    tct.execute();
+    tct = new TimeCardTransaction(new Date(2001, 11, 8), 5.0, empId);
+    tct.execute();
+    PaydayTransaction pt = new PaydayTransaction(payDate);
+    pt.execute();
+    validateHourlyPaycheck(pt, empId, payDate, 7 * 15.25);
+  }
+
+  @Test
+  public void paySingleHourlyEmployeeOnWrongDate() {
+    ahe.execute();
+    Date payDate = new Date(2001, 11, 8);
+    TimeCardTransaction tct = new TimeCardTransaction(payDate, 9.0, empId);
+    tct.execute();
+    PaydayTransaction pt = new PaydayTransaction(payDate);
+    pt.execute();
+    Paycheck pc = pt.getPaycheck(empId);
+    assertNull(pc);
+  }
+
+  @Test
   public void paySingleHourlyEmployeeOvertimeOneTimeCard() {
     ahe.execute();
     Date payDate = new Date(2001, 11, 9);

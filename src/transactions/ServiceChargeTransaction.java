@@ -7,11 +7,11 @@ import affiliations.UnionAffiliation;
 
 public class ServiceChargeTransaction implements Transaction {
 
-  private long date;
+  private Date date;
   private double charge;
   private int memberId;
 
-  public ServiceChargeTransaction(int memberId, long date, double charge) {
+  public ServiceChargeTransaction(int memberId, Date date, double charge) {
     this.date = date;
     this.charge = charge;
     this.memberId = memberId;

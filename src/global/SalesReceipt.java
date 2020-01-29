@@ -3,14 +3,14 @@ package global;
 public class SalesReceipt {
 
   private double amount;
-  private long date;
+  private Date date;
 
-  public SalesReceipt(long date, double amount) {
+  public SalesReceipt(Date date, double amount) {
     this.date = date;
     this.amount = amount;
   }
 
-  public long getDate() {
+  public Date getDate() {
     return date;
   }
 

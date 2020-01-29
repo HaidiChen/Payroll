@@ -4,11 +4,29 @@ import java.util.Calendar;
 
 public class Date {
 
+  private static final int LAST_DAY_OF_WEEK = Calendar.FRIDAY;
+  private static final int FIRST_DAY_OF_WEEK = Calendar.MONDAY;
   private Calendar calendar;
 
   public Date(int year, int month, int date) {
     calendar = Calendar.getInstance();
     calendar.set(year, month - 1, date);
+  }
+
+  public int getYear() {
+    return calendar.get(Calendar.YEAR);
+  }
+
+  public int getMonth() {
+    return calendar.get(Calendar.MONTH) + 1;
+  }
+
+  public int getDate() {
+    return calendar.get(Calendar.DATE);
+  }
+
+  private int getDayOfWeek() {
+    return calendar.get(Calendar.DAY_OF_WEEK);
   }
 
   @Override
@@ -29,26 +47,33 @@ public class Date {
 
   @Override
   public String toString() {
-    return calendar.get(Calendar.YEAR) + "/" + calendar.get(Calendar.MONTH) +
-      "/" + calendar.get(Calendar.DATE);
+    return getYear() + "/" + getMonth() + "/" + getDate();
   }
 
   public boolean isLastDayOfMonth() {
-    int date = calendar.get(Calendar.DATE);
-    int month = calendar.get(Calendar.MONTH);
-    int year = calendar.get(Calendar.YEAR);
+    int date = getDate();
+    int month = getMonth();
+    int year = getYear();
 
-    Calendar newDate = Calendar.getInstance();
-    newDate.set(year, month, date + 1);
-
-    return month != newDate.get(Calendar.MONTH);
+    Date newDate = new Date(year, month, date + 1);
+    return month != newDate.getMonth();
   }
 
   public boolean isEndOfWeek() {
-    int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-    if (dayOfWeek == 6) {
-      return true;
-    }
-    return false;
+    int dayOfWeek = getDayOfWeek();
+    return dayOfWeek == LAST_DAY_OF_WEEK;
   }
+
+  public Date addDays(int days) {
+    return new Date(getYear(), getMonth(), getDate() + days);
+  }
+
+  public boolean after(Date when) {
+    return calendar.after(when.calendar);
+  }
+
+  public boolean before(Date when) {
+    return calendar.before(when.calendar);
+  }
+
 }

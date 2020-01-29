@@ -1,7 +1,6 @@
 package classifications;
 
-import global.SalesReceipt;
-import global.Paycheck;
+import global.*;
 import java.util.HashMap;
 import intfs.PaymentClassification;
 
@@ -9,7 +8,7 @@ public class CommissionedClassification implements PaymentClassification {
 
   private double rate;
   private double salary;
-  private HashMap<Long, SalesReceipt> itsReceipts = new HashMap<>();
+  private HashMap<Date, SalesReceipt> itsReceipts = new HashMap<>();
 
   public CommissionedClassification(double salary, double rate) {
     this.salary = salary;
@@ -28,7 +27,7 @@ public class CommissionedClassification implements PaymentClassification {
     itsReceipts.put(sr.getDate(), sr);
   }
 
-  public SalesReceipt getSalesReceipt(long date) {
+  public SalesReceipt getSalesReceipt(Date date) {
     return itsReceipts.get(date);
   }
 

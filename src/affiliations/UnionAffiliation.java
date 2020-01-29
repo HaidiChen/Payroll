@@ -2,21 +2,20 @@ package affiliations;
 
 import intfs.Affiliation;
 import java.util.HashMap;
-import global.ServiceCharge;
-import global.Paycheck;
+import global.*;
 
 public class UnionAffiliation implements Affiliation {
 
   private int memberId;
   private double dues;
-  private HashMap<Long, ServiceCharge> itsCharges = new HashMap<>();
+  private HashMap<Date, ServiceCharge> itsCharges = new HashMap<>();
 
   public UnionAffiliation(int memberId, double dues) {
     this.memberId = memberId;
     this.dues = dues;
   }
 
-  public ServiceCharge getServiceCharge(long date) {
+  public ServiceCharge getServiceCharge(Date date) {
     return itsCharges.get(date);
   }
 
