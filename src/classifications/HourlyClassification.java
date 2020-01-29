@@ -30,7 +30,7 @@ public class HourlyClassification implements PaymentClassification {
     Date payPeriod = pc.getPayDate();
 
     for (Date date: itsCards.keySet()) {
-      TimeCard tc = itsCards.get(date);
+      TimeCard tc = getTimeCard(date);
       if (isInPayPeriod(tc, payPeriod)) {
         double hours = tc.getHours();
         if (hours > 8) {
