@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
   Others.class,
   HourlyPayTest.class,
   SalariedPayTest.class,
-//  CommissionedPayTest.class,
+  CommissionedPayTest.class,
   ChangeEmployeeInfoTest.class,
   AddDeleteEmployeeTest.class,
 })

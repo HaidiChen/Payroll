@@ -76,4 +76,17 @@ public class Date {
     return calendar.before(when.calendar);
   }
 
+  public boolean isEndOfSecondWeek() {
+    return isEndOfWeek() && isEvenWeekOfYear();
+  }
+
+  private boolean isEvenWeekOfYear() {
+    int weekOfYear = getWeekOfYear();
+    return weekOfYear % 2 == 0;
+  }
+
+  private int getWeekOfYear() {
+    return calendar.get(Calendar.WEEK_OF_YEAR);
+  }
+
 }

@@ -20,9 +20,10 @@ public class SalesReceiptTransaction implements Transaction {
     Employee e = GpayrollDatabase.getEmployee(empId);
     if (e != null) {
       try {
-        CommissionedClassification hc = (CommissionedClassification) e.getClassification();
-        SalesReceipt tc = new SalesReceipt(date, amount);
-        hc.addSalesReceipt(tc);
+        CommissionedClassification cc = 
+          (CommissionedClassification) e.getClassification();
+        SalesReceipt sr = new SalesReceipt(date, amount);
+        cc.addSalesReceipt(sr);
       }
       catch (Exception ex) {
         System.out.println(ex.getMessage());
