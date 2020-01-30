@@ -9,4 +9,9 @@ public class MonthlySchedule implements PaymentSchedule {
     return payDate.isLastDayOfMonth();
   }
 
+  public Date getPayPeriodStartDate(Date payPeriodEndDate) {
+    int dayOfMonth = payPeriodEndDate.getDayOfMonth();
+    return payPeriodEndDate.addDays(-dayOfMonth);
+  }
+
 }

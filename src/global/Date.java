@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 public class Date {
 
+  public static final int FRIDAY = Calendar.FRIDAY;
   private static final int LAST_DAY_OF_WEEK = Calendar.FRIDAY;
   private static final int FIRST_DAY_OF_WEEK = Calendar.MONDAY;
   private Calendar calendar;
@@ -25,7 +26,7 @@ public class Date {
     return calendar.get(Calendar.DATE);
   }
 
-  private int getDayOfWeek() {
+  public int getDayOfWeek() {
     return calendar.get(Calendar.DAY_OF_WEEK);
   }
 
@@ -92,6 +93,16 @@ public class Date {
   public boolean isWeekend() {
     return getDayOfWeek() == Calendar.SUNDAY || 
       getDayOfWeek() == Calendar.SATURDAY;
+  }
+
+  public int getDayOfMonth() {
+    return calendar.get(Calendar.DAY_OF_MONTH);
+  }
+
+  public boolean isInPayPeriod(Paycheck pc) {
+    Date startDate = pc.getPayPeriodStartDate();
+    Date endDate = pc.getPayDate();
+    return after(startDate) && (before(endDate) || equals(endDate));
   }
 
 }

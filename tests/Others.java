@@ -58,7 +58,7 @@ public class Others {
     sct.execute();
 
     svc = ua.getServiceCharge(date);
-    assertEquals(Double.valueOf(12.95), Double.valueOf(svc.getAmount()));
+    assertEquals(Double.valueOf(12.95), Double.valueOf(svc.getCharge()));
   }
 
   @Test

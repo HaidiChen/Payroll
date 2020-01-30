@@ -9,4 +9,8 @@ public class BiweeklySchedule implements PaymentSchedule {
     return payDate.isEndOfSecondWeek();
   }
 
+  public Date getPayPeriodStartDate(Date payPeriodEndDate) {
+    return payPeriodEndDate.addDays(-12);
+  }
+
 }

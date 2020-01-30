@@ -14,7 +14,7 @@ public class ServiceCharge {
     return date;
   }
 
-  public double getAmount() {
+  public double getCharge() {
     return charge;
   }
 }

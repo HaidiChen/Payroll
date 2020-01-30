@@ -20,7 +20,7 @@ public class PaydayTransaction implements Transaction {
       Employee e = GpayrollDatabase.getEmployee(empId);
       if (e != null) {
         if (e.isPayDate(payDate)) {
-          Paycheck pc = new Paycheck(payDate);
+          Paycheck pc = new Paycheck(e.getPayPeriodStartDate(payDate), payDate);
           paychecks.put(empId, pc);
           e.payday(pc);
         }

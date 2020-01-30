@@ -21,7 +21,8 @@ public class HoldMethod implements PaymentMethod {
     return address;
   }
 
-  public void pay(Paycheck pc) {}
+  public void pay(Paycheck pc) {
+  }
 
   public String getMethodName() {
     return "Hold";

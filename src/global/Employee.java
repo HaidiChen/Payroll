@@ -80,4 +80,8 @@ public class Employee {
     pm.pay(paycheck);
   }
 
+  public Date getPayPeriodStartDate(Date payPeriodEndDate) {
+    return ps.getPayPeriodStartDate(payPeriodEndDate);
+  }
+
 }

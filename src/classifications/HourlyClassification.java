@@ -27,12 +27,10 @@ public class HourlyClassification implements PaymentClassification {
 
   public double calculatePay(Paycheck pc) {
     double totalPay = 0;
-    Date payPeriod = pc.getPayDate();
-
     for (Date date: itsCards.keySet()) {
       TimeCard tc = getTimeCard(date);
-      if (isInPayPeriod(tc, payPeriod)) {
-        Date timeCardDate = tc.getDate();
+      Date timeCardDate = tc.getDate();
+      if (timeCardDate.isInPayPeriod(pc)) {
         double hours = tc.getHours();
         if (hours > 8) {
           double extraHours = hours - 8;
@@ -49,13 +47,5 @@ public class HourlyClassification implements PaymentClassification {
     }
     return totalPay;
   }
-
-  private boolean isInPayPeriod(TimeCard tc, Date payPeriod) {
-    Date periodStartDate = payPeriod.addDays(-7);
-    Date periodEndDate = payPeriod;
-    Date timeCardDate = tc.getDate();
-    return timeCardDate.after(periodStartDate) && 
-      (timeCardDate.before(periodEndDate) || timeCardDate.equals(periodEndDate));
-  }
-  
+ 
 }

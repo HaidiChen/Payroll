@@ -3,6 +3,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
+  ServiceChargeTest.class,
   Others.class,
   HourlyPayTest.class,
   SalariedPayTest.class,

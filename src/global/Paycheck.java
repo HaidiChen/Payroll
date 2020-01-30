@@ -5,16 +5,22 @@ import intfs.PaymentMethod;
 public class Paycheck {
 
   private Date payDate;
+  private Date payPeriodStartDate;
   private double grossPay;
   private double netPay;
   private PaymentMethod pm;
 
-  public Paycheck(Date payDate) {
+  public Paycheck(Date payPeriodStartDate, Date payDate) {
     this.payDate = payDate;
+    this.payPeriodStartDate = payPeriodStartDate;
   }
 
   public Date getPayDate() {
     return payDate;
+  }
+
+  public Date getPayPeriodStartDate() {
+    return payPeriodStartDate;
   }
 
   public void setNetPay(double netPay) {

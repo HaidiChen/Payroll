@@ -32,24 +32,15 @@ public class CommissionedClassification implements PaymentClassification {
   }
 
   public double calculatePay(Paycheck pc) {
-    Date payDate = pc.getPayDate();
     double totalPay = salary;
     for (Date date: itsReceipts.keySet()) {
       SalesReceipt sr = getSalesReceipt(date);
-      if (isInSamePeriod(sr, payDate)) {
+      Date srDate = sr.getDate();
+      if (srDate.isInPayPeriod(pc)) {
         totalPay += sr.getAmount() * rate;
       }
     }
     return totalPay;
   }
 
-  private boolean isInSamePeriod(SalesReceipt sr, Date payDate) {
-    Date salesReceiptDate = sr.getDate();
-    Date periodStartDate = payDate.addDays(-12);
-    Date periodEndDate = payDate;
-    return salesReceiptDate.after(periodStartDate) && 
-      (salesReceiptDate.before(periodEndDate) || 
-       salesReceiptDate.equals(periodEndDate));
-  }
-  
 }
