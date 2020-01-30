@@ -52,7 +52,6 @@ public class ServiceChargeTest {
 
   @Test
   public void serviceChargesSpanningMultiplePayPeriods() {
-    System.out.println("-------------------ServiceCharge-----------------");
     ahe.execute();
     int memberId = 7734;
     ChangeMemberTransaction cmt = 
