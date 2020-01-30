@@ -25,6 +25,21 @@ public class HourlyPayTest {
   }
 
   @Test
+  public void paySingleEmployeeTimeCardOnWeekend() {
+    ahe.execute();
+    Date payDate = new Date(2001, 11, 9);
+    Date weekendDate1 = new Date(2001, 11, 3);
+    Date weekendDate2 = new Date(2001, 11, 4);
+    TimeCardTransaction tct = new TimeCardTransaction(weekendDate1, 2.0, empId);
+    tct.execute();
+    tct = new TimeCardTransaction(weekendDate2, 4.0, empId);
+    tct.execute();
+    PaydayTransaction pt = new PaydayTransaction(payDate);
+    pt.execute();
+    validateHourlyPaycheck(pt, empId, payDate, 6.0 * 15.25 * 1.5);
+  }
+
+  @Test
   public void paySingleHourlyEmployeeWithTimeCardsSpanningTwoPayPeriods() {
     ahe.execute();
     Date payDate = new Date(2001, 11, 9);

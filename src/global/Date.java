@@ -89,4 +89,9 @@ public class Date {
     return calendar.get(Calendar.WEEK_OF_YEAR);
   }
 
+  public boolean isWeekend() {
+    return getDayOfWeek() == Calendar.SUNDAY || 
+      getDayOfWeek() == Calendar.SATURDAY;
+  }
+
 }
