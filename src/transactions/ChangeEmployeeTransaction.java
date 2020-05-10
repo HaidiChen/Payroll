@@ -6,14 +6,14 @@ import global.GpayrollDatabase;
 
 public abstract class ChangeEmployeeTransaction implements Transaction {
 
-  protected int empId;
+    protected int empId;
 
-  public void execute() {
-    Employee e = GpayrollDatabase.getEmployee(empId);
-    if (e != null) {
-      change(e);
+    public void execute() {
+        Employee e = GpayrollDatabase.getEmployee(empId);
+        if (e != null) {
+            change(e);
+        }
     }
-  }
 
-  public abstract void change(Employee e);
+    public abstract void change(Employee e);
 }

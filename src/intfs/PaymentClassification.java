@@ -4,6 +4,6 @@ import global.Paycheck;
 
 public interface PaymentClassification {
 
-  public double calculatePay(Paycheck pc);
-  
+    public double calculatePay(Paycheck pc);
+
 }

@@ -14,35 +14,35 @@ import affiliations.*;
 
 public class SalariedPayTest {
 
-  private int empId;
-  private Employee e;
+    private int empId;
+    private Employee e;
 
-  private AddSalariedEmployee ase;
+    private AddSalariedEmployee ase;
 
-  @Before
-  public void setUp() {
-    ase = new AddSalariedEmployee(empId, "Alix", "Arlinton", 200.00);
-  }
+    @Before
+    public void setUp() {
+        ase = new AddSalariedEmployee(empId, "Alix", "Arlinton", 200.00);
+    }
 
-  @Test
-  public void paySalariedEmployee() {
-    ase.execute();
-    Date payDate = new Date(2001, 11, 30);
-    PaydayTransaction pt = new PaydayTransaction(payDate);
-    pt.execute();
-    Paycheck pc = pt.getPaycheck(empId);
-    assertNotNull(pc);
-    assertEquals(pc.getPayDate(), payDate);
-    assertEquals(Double.valueOf(200.00), Double.valueOf(pc.getNetPay()));
-  }
+    @Test
+    public void paySalariedEmployee() {
+        ase.execute();
+        Date payDate = new Date(2001, 11, 30);
+        PaydayTransaction pt = new PaydayTransaction(payDate);
+        pt.execute();
+        Paycheck pc = pt.getPaycheck(empId);
+        assertNotNull(pc);
+        assertEquals(pc.getPayDate(), payDate);
+        assertEquals(Double.valueOf(200.00), Double.valueOf(pc.getNetPay()));
+    }
 
-  @Test
-  public void paySingleSalariedEmployeeOnWrongDate() {
-    ase.execute();
-    Date payDate = new Date(2001, 11, 29);
-    PaydayTransaction pt = new PaydayTransaction(payDate);
-    pt.execute();
-    Paycheck pc = pt.getPaycheck(empId);
-  }
+    @Test
+    public void paySingleSalariedEmployeeOnWrongDate() {
+        ase.execute();
+        Date payDate = new Date(2001, 11, 29);
+        PaydayTransaction pt = new PaydayTransaction(payDate);
+        pt.execute();
+        Paycheck pc = pt.getPaycheck(empId);
+    }
 
 }

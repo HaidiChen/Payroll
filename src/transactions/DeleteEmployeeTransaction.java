@@ -4,14 +4,14 @@ import intfs.Transaction;
 import global.GpayrollDatabase;
 
 public class DeleteEmployeeTransaction implements Transaction {
-  
-  private int empId;
 
-  public DeleteEmployeeTransaction(int empId) {
-    this.empId = empId;
-  }
+    private int empId;
 
-  public void execute() {
-    GpayrollDatabase.deleteEmployee(empId);
-  }
+    public DeleteEmployeeTransaction(int empId) {
+        this.empId = empId;
+    }
+
+    public void execute() {
+        GpayrollDatabase.deleteEmployee(empId);
+    }
 }

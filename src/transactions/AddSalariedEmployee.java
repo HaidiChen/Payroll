@@ -7,22 +7,22 @@ import classifications.SalariedClassification;
 
 public class AddSalariedEmployee extends AddEmployeeTransaction {
 
-  private double itsSalary;
-  
-  public AddSalariedEmployee(
-      int empId, String name, String address, double salary) {
-    itsSalary = salary;
-    this.empId = empId;
-    this.itsAddress = address;
-    this.itsName = name;
-  }
+    private double itsSalary;
 
-  public PaymentClassification getClassification() {
-    return new SalariedClassification(itsSalary);
-  }
+    public AddSalariedEmployee(
+            int empId, String name, String address, double salary) {
+        itsSalary = salary;
+        this.empId = empId;
+        this.itsAddress = address;
+        this.itsName = name;
+            }
 
-  public PaymentSchedule getSchedule() {
-    return new MonthlySchedule();
-  }
+    public PaymentClassification getClassification() {
+        return new SalariedClassification(itsSalary);
+    }
+
+    public PaymentSchedule getSchedule() {
+        return new MonthlySchedule();
+    }
 
 }

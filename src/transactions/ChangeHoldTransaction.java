@@ -5,14 +5,14 @@ import methods.HoldMethod;
 
 public class ChangeHoldTransaction extends ChangeMethodTransaction {
 
-  private String address;
-  
-  public ChangeHoldTransaction(int empId, String address) {
-    this.address = address;
-    this.empId = empId;
-  }
+    private String address;
 
-  protected PaymentMethod getMethod() {
-    return new HoldMethod(address);
-  }
+    public ChangeHoldTransaction(int empId, String address) {
+        this.address = address;
+        this.empId = empId;
+    }
+
+    protected PaymentMethod getMethod() {
+        return new HoldMethod(address);
+    }
 }

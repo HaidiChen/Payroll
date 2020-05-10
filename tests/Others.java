@@ -15,95 +15,95 @@ import affiliations.*;
 
 public class Others {
 
-  private int empId;
-  private Employee e;
+    private int empId;
+    private Employee e;
 
-  private AddSalariedEmployee ase;
-  private AddHourlyEmployee ahe;
-  private AddCommissionedEmployee ace;
+    private AddSalariedEmployee ase;
+    private AddHourlyEmployee ahe;
+    private AddCommissionedEmployee ace;
 
-  private CommissionedClassification cc;
-  private HourlyClassification hc;
-  private SalariedClassification sc;
+    private CommissionedClassification cc;
+    private HourlyClassification hc;
+    private SalariedClassification sc;
 
-  private TimeCardTransaction tct;
-  private TimeCard tc;
+    private TimeCardTransaction tct;
+    private TimeCard tc;
 
-  private SalesReceiptTransaction srt;
-  private SalesReceipt sr;
+    private SalesReceiptTransaction srt;
+    private SalesReceipt sr;
 
-  private ServiceChargeTransaction sct;
-  private ServiceCharge svc;
-  private UnionAffiliation ua;
+    private ServiceChargeTransaction sct;
+    private ServiceCharge svc;
+    private UnionAffiliation ua;
 
-  @Before
-  public void setUp() {
-    ase = new AddSalariedEmployee(empId, "Alix", "Arlinton", 200.00);
-    ahe = new AddHourlyEmployee(empId, "Berb", "Boston", 20.00);
-    ace = new AddCommissionedEmployee(empId, "Clerk", "Croker", 2000.00, 20.00);
-  }
+    @Before
+    public void setUp() {
+        ase = new AddSalariedEmployee(empId, "Alix", "Arlinton", 200.00);
+        ahe = new AddHourlyEmployee(empId, "Berb", "Boston", 20.00);
+        ace = new AddCommissionedEmployee(empId, "Clerk", "Croker", 2000.00, 20.00);
+    }
 
-  @Test
-  public void addServiceCharge() {
-    ahe.execute();
-    Date date = new Date(2020, 1, 19);
-    e = GpayrollDatabase.getEmployee(empId);
+    @Test
+    public void addServiceCharge() {
+        ahe.execute();
+        Date date = new Date(2020, 1, 19);
+        e = GpayrollDatabase.getEmployee(empId);
 
-    int memberId = 86;
-    ua = new UnionAffiliation(memberId, 12.5);
-    e.setAffiliation(ua);
-    GpayrollDatabase.addUnionMember(memberId, e);
-    
-    sct = new ServiceChargeTransaction(memberId, date, 12.95);
-    sct.execute();
+        int memberId = 86;
+        ua = new UnionAffiliation(memberId, 12.5);
+        e.setAffiliation(ua);
+        GpayrollDatabase.addUnionMember(memberId, e);
 
-    svc = ua.getServiceCharge(date);
-    assertEquals(Double.valueOf(12.95), Double.valueOf(svc.getCharge()));
-  }
+        sct = new ServiceChargeTransaction(memberId, date, 12.95);
+        sct.execute();
 
-  @Test
-  public void testSalesReceiptTransaction() {
-    ace.execute();
-    Date date = new Date(2020, 1, 19);
+        svc = ua.getServiceCharge(date);
+        assertEquals(Double.valueOf(12.95), Double.valueOf(svc.getCharge()));
+    }
 
-    srt = new SalesReceiptTransaction(date, 10, empId);
-    srt.execute();
+    @Test
+    public void testSalesReceiptTransaction() {
+        ace.execute();
+        Date date = new Date(2020, 1, 19);
 
-    e = GpayrollDatabase.getEmployee(empId);
-    cc = (CommissionedClassification) e.getClassification();
-    sr = cc.getSalesReceipt(date);
+        srt = new SalesReceiptTransaction(date, 10, empId);
+        srt.execute();
 
-    assertNotNull(sr);
-    assertEquals(Double.valueOf(10), Double.valueOf(sr.getAmount()));
+        e = GpayrollDatabase.getEmployee(empId);
+        cc = (CommissionedClassification) e.getClassification();
+        sr = cc.getSalesReceipt(date);
 
-  }
+        assertNotNull(sr);
+        assertEquals(Double.valueOf(10), Double.valueOf(sr.getAmount()));
 
-  @Test 
-  public void addTimeCardToNonHourlyEmployee() {
-    ase.execute();
-    Date date = new Date(2020, 1, 19);
+    }
 
-    tct = new TimeCardTransaction(date, 8.0, empId);
-    tct.execute();
+    @Test 
+    public void addTimeCardToNonHourlyEmployee() {
+        ase.execute();
+        Date date = new Date(2020, 1, 19);
 
-    tct = new TimeCardTransaction(date, 8.0, 10);
-    tct.execute();
-  }
+        tct = new TimeCardTransaction(date, 8.0, empId);
+        tct.execute();
 
-  @Test
-  public void testTimeCardTransaction() {
-    ahe.execute();
-    Date date = new Date(2020, 1, 19);
+        tct = new TimeCardTransaction(date, 8.0, 10);
+        tct.execute();
+    }
 
-    TimeCardTransaction tct = new TimeCardTransaction(date, 8.0, empId);
-    tct.execute();
+    @Test
+    public void testTimeCardTransaction() {
+        ahe.execute();
+        Date date = new Date(2020, 1, 19);
 
-    e = GpayrollDatabase.getEmployee(empId);
-    hc = (HourlyClassification) e.getClassification();
-    tc = hc.getTimeCard(date);
+        TimeCardTransaction tct = new TimeCardTransaction(date, 8.0, empId);
+        tct.execute();
 
-    assertNotNull(tc);
-    assertEquals(Double.valueOf(8.0), Double.valueOf(tc.getHours()));
-  }
+        e = GpayrollDatabase.getEmployee(empId);
+        hc = (HourlyClassification) e.getClassification();
+        tc = hc.getTimeCard(date);
+
+        assertNotNull(tc);
+        assertEquals(Double.valueOf(8.0), Double.valueOf(tc.getHours()));
+    }
 
 }

@@ -7,23 +7,23 @@ import global.Employee;
 import global.GpayrollDatabase;
 
 public class ChangeUnaffiliatedTransaction extends ChangeAffiliationTransaction {
-  
-  public ChangeUnaffiliatedTransaction(int empId) {
-    this.empId = empId;
-  }
 
-  protected Affiliation getAffiliation() {
-    return new NoAffiliation();
-  }
+    public ChangeUnaffiliatedTransaction(int empId) {
+        this.empId = empId;
+    }
 
-  protected void recordMembership(Employee e) {
-    try {
-      UnionAffiliation ua = (UnionAffiliation) e.getAffiliation();
-      int memberId = ua.getMemberId();
-      GpayrollDatabase.removeUnionMember(memberId);
+    protected Affiliation getAffiliation() {
+        return new NoAffiliation();
     }
-    catch (Exception ex) {
-      System.out.println(ex.getMessage());
+
+    protected void recordMembership(Employee e) {
+        try {
+            UnionAffiliation ua = (UnionAffiliation) e.getAffiliation();
+            int memberId = ua.getMemberId();
+            GpayrollDatabase.removeUnionMember(memberId);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
-  }
 }

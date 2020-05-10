@@ -5,17 +5,17 @@ import global.Paycheck;
 
 public class SalariedClassification implements PaymentClassification {
 
-  private double salary;
+    private double salary;
 
-  public SalariedClassification(double salary) {
-    this.salary = salary;
-  }
+    public SalariedClassification(double salary) {
+        this.salary = salary;
+    }
 
-  public double getSalary() {
-    return salary;
-  }
+    public double getSalary() {
+        return salary;
+    }
 
-  public double calculatePay(Paycheck pc) {
-    return salary;
-  }
+    public double calculatePay(Paycheck pc) {
+        return salary;
+    }
 }

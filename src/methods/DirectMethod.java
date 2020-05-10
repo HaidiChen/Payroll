@@ -4,26 +4,26 @@ import intfs.PaymentMethod;
 import global.Paycheck;
 
 public class DirectMethod implements PaymentMethod {
-  
-  private String bank;
-  private long account;
 
-  public DirectMethod(String bank, long account) {
-    this.bank = bank;
-    this.account = account;
-  }
+    private String bank;
+    private long account;
 
-  public String getBank() {
-    return bank;
-  }
+    public DirectMethod(String bank, long account) {
+        this.bank = bank;
+        this.account = account;
+    }
 
-  public long getAccount() {
-    return account;
-  }
+    public String getBank() {
+        return bank;
+    }
 
-  public void pay(Paycheck pc) {}
+    public long getAccount() {
+        return account;
+    }
 
-  public String getMethodName() {
-    return "Direct";
-  }
+    public void pay(Paycheck pc) {}
+
+    public String getMethodName() {
+        return "Direct";
+    }
 }

@@ -2,19 +2,19 @@ package global;
 
 public class ServiceCharge {
 
-  private double charge;
-  private Date date;
+    private double charge;
+    private Date date;
 
-  public ServiceCharge(Date date, double charge) {
-    this.date = date;
-    this.charge = charge;
-  }
+    public ServiceCharge(Date date, double charge) {
+        this.date = date;
+        this.charge = charge;
+    }
 
-  public Date getDate() {
-    return date;
-  }
+    public Date getDate() {
+        return date;
+    }
 
-  public double getCharge() {
-    return charge;
-  }
+    public double getCharge() {
+        return charge;
+    }
 }

@@ -5,25 +5,25 @@ import global.Paycheck;
 
 public class MailMethod implements PaymentMethod {
 
-  private String address;
+    private String address;
 
-  public MailMethod() {}
+    public MailMethod() {}
 
-  public MailMethod(String address) {
-    this.address = address;
-  }
+    public MailMethod(String address) {
+        this.address = address;
+    }
 
-  public void setAddress(String address) {
-    this.address = address;
-  }
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-  public String getAddress() {
-    return address;
-  }
+    public String getAddress() {
+        return address;
+    }
 
-  public void pay(Paycheck pc) {}
+    public void pay(Paycheck pc) {}
 
-  public String getMethodName() {
-    return "Mail";
-  }
+    public String getMethodName() {
+        return "Mail";
+    }
 }

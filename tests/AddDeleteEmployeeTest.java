@@ -15,103 +15,103 @@ import affiliations.*;
 
 public class AddDeleteEmployeeTest {
 
-  private int empId;
-  private Employee e;
+    private int empId;
+    private Employee e;
 
-  private AddSalariedEmployee ase;
-  private AddHourlyEmployee ahe;
-  private AddCommissionedEmployee ace;
+    private AddSalariedEmployee ase;
+    private AddHourlyEmployee ahe;
+    private AddCommissionedEmployee ace;
 
-  private CommissionedClassification cc;
-  private HourlyClassification hc;
-  private SalariedClassification sc;
+    private CommissionedClassification cc;
+    private HourlyClassification hc;
+    private SalariedClassification sc;
 
-  @Before
-  public void setUp() {
-    ase = new AddSalariedEmployee(empId, "Alix", "Arlinton", 200.00);
-    ahe = new AddHourlyEmployee(empId, "Berb", "Boston", 20.00);
-    ace = new AddCommissionedEmployee(empId, "Clerk", "Croker", 2000.00, 20.00);
-  }
-  
-  @Test
-  public void deleteEmployee() {
-    ace.execute();
+    @Before
+    public void setUp() {
+        ase = new AddSalariedEmployee(empId, "Alix", "Arlinton", 200.00);
+        ahe = new AddHourlyEmployee(empId, "Berb", "Boston", 20.00);
+        ace = new AddCommissionedEmployee(empId, "Clerk", "Croker", 2000.00, 20.00);
+    }
 
-    e = GpayrollDatabase.getEmployee(empId);
-    assertEquals("Clerk", e.getName());
+    @Test
+    public void deleteEmployee() {
+        ace.execute();
 
-    DeleteEmployeeTransaction dt = new DeleteEmployeeTransaction(empId);
-    dt.execute();
+        e = GpayrollDatabase.getEmployee(empId);
+        assertEquals("Clerk", e.getName());
 
-    e = GpayrollDatabase.getEmployee(empId);
-    assertNull(e);
-  }
+        DeleteEmployeeTransaction dt = new DeleteEmployeeTransaction(empId);
+        dt.execute();
 
-  @Test
-  public void addCommissionedEmployee() {
-    ace.execute();
+        e = GpayrollDatabase.getEmployee(empId);
+        assertNull(e);
+    }
 
-    e = GpayrollDatabase.getEmployee(empId);
-    assertEquals("Clerk", e.getName());
-    assertEquals("Croker", e.getAddress());
+    @Test
+    public void addCommissionedEmployee() {
+        ace.execute();
 
-    PaymentClassification pc = e.getClassification();
-    cc = (CommissionedClassification) pc;
-    assertEquals(Double.valueOf(cc.getRate()), Double.valueOf(20.00));
-    assertEquals(Double.valueOf(cc.getSalary()), Double.valueOf(2000.00));
+        e = GpayrollDatabase.getEmployee(empId);
+        assertEquals("Clerk", e.getName());
+        assertEquals("Croker", e.getAddress());
 
-    PaymentSchedule ps = e.getSchedule();
-    BiweeklySchedule ws = new BiweeklySchedule();
-    assertEquals(ps.getClass().getName(), ws.getClass().getName());
+        PaymentClassification pc = e.getClassification();
+        cc = (CommissionedClassification) pc;
+        assertEquals(Double.valueOf(cc.getRate()), Double.valueOf(20.00));
+        assertEquals(Double.valueOf(cc.getSalary()), Double.valueOf(2000.00));
 
-    PaymentMethod pm = e.getMethod();
-    HoldMethod hm = new HoldMethod();
-    assertEquals(pm.getClass().getName(), hm.getClass().getName());
-    
-  }
+        PaymentSchedule ps = e.getSchedule();
+        BiweeklySchedule ws = new BiweeklySchedule();
+        assertEquals(ps.getClass().getName(), ws.getClass().getName());
 
-  @Test
-  public void addHourlyEmployee() {
-    ahe.execute();
+        PaymentMethod pm = e.getMethod();
+        HoldMethod hm = new HoldMethod();
+        assertEquals(pm.getClass().getName(), hm.getClass().getName());
 
-    e = GpayrollDatabase.getEmployee(empId);
-    assertEquals("Berb", e.getName());
-    assertEquals("Boston", e.getAddress());
+    }
 
-    PaymentClassification pc = e.getClassification();
-    hc = (HourlyClassification) pc;
-    assertEquals(Double.valueOf(hc.getRate()), Double.valueOf(20.00));
+    @Test
+    public void addHourlyEmployee() {
+        ahe.execute();
 
-    PaymentSchedule ps = e.getSchedule();
-    WeeklySchedule ws = new WeeklySchedule();
-    assertEquals(ps.getClass().getName(), ws.getClass().getName());
+        e = GpayrollDatabase.getEmployee(empId);
+        assertEquals("Berb", e.getName());
+        assertEquals("Boston", e.getAddress());
 
-    PaymentMethod pm = e.getMethod();
-    HoldMethod hm = new HoldMethod();
-    assertEquals(pm.getClass().getName(), hm.getClass().getName());
-    
-  }
+        PaymentClassification pc = e.getClassification();
+        hc = (HourlyClassification) pc;
+        assertEquals(Double.valueOf(hc.getRate()), Double.valueOf(20.00));
 
-  @Test
-  public void addSalariedEmployee() {
-    ase.execute();
+        PaymentSchedule ps = e.getSchedule();
+        WeeklySchedule ws = new WeeklySchedule();
+        assertEquals(ps.getClass().getName(), ws.getClass().getName());
 
-    e = GpayrollDatabase.getEmployee(empId);
-    assertEquals("Alix", e.getName());
-    assertEquals("Arlinton", e.getAddress());
+        PaymentMethod pm = e.getMethod();
+        HoldMethod hm = new HoldMethod();
+        assertEquals(pm.getClass().getName(), hm.getClass().getName());
 
-    PaymentClassification pc = e.getClassification();
-    sc = (SalariedClassification) pc;
-    assertEquals(Double.valueOf(200.00), Double.valueOf(sc.getSalary()));
+    }
 
-    PaymentSchedule ps = e.getSchedule();
-    MonthlySchedule ms = new MonthlySchedule();
-    assertEquals(ps.getClass().getName(), ms.getClass().getName());
+    @Test
+    public void addSalariedEmployee() {
+        ase.execute();
 
-    PaymentMethod pm = e.getMethod();
-    HoldMethod hm = new HoldMethod();
-    assertEquals(pm.getClass().getName(), hm.getClass().getName());
+        e = GpayrollDatabase.getEmployee(empId);
+        assertEquals("Alix", e.getName());
+        assertEquals("Arlinton", e.getAddress());
 
-  }
+        PaymentClassification pc = e.getClassification();
+        sc = (SalariedClassification) pc;
+        assertEquals(Double.valueOf(200.00), Double.valueOf(sc.getSalary()));
+
+        PaymentSchedule ps = e.getSchedule();
+        MonthlySchedule ms = new MonthlySchedule();
+        assertEquals(ps.getClass().getName(), ms.getClass().getName());
+
+        PaymentMethod pm = e.getMethod();
+        HoldMethod hm = new HoldMethod();
+        assertEquals(pm.getClass().getName(), hm.getClass().getName());
+
+    }
 
 }

@@ -1,5 +1,5 @@
 package intfs;
 
 public interface Transaction {
-  void execute();
+    void execute();
 }
